@@ -1,13 +1,11 @@
 class Manager
     attr_reader :name, :department, :age
-    attr_accessor :employees
     @@all = []
 
     def initialize(name, department, age)
         @name = name    
         @department = department
         @age = age
-        @employees = []
         save
     end
 
@@ -25,8 +23,8 @@ class Manager
         end
     end
     
-    def hire_employee(employee_name, salary)
-        @employees << Employee.new()
+    def hire_employee(employee_name, employee_salary)
+        Employee.new(employee_name, employee_salary, self)
     end
 
     def self.all_departments
@@ -40,6 +38,7 @@ class Manager
     end
 
     private
+    
     def self.get_ages
         self.all.map do |manager|
             manager.age
